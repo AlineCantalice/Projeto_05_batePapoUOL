@@ -62,7 +62,7 @@ ion-icon {
     font-size: 18px;
 }
 
-.mensagem {
+.message {
     width: 100%;
     border-radius: 2px;
     font-size: 14px;
@@ -73,14 +73,14 @@ ion-icon {
     align-items: center;
 }
 
-.mensagem.mensagem-status {
+.message.status {
     background-color: #DCDCDC;
 }
 
-.mensagem.mensagem-reservada {
+.message.private_message {
     background-color: #FFDEDE;
 }
 
-.mensagem p{
+.message p{
     margin: 13px 0;
 }
