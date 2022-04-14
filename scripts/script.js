@@ -1,17 +1,33 @@
 const URL_SERVIDOR = "https://mock-api.driven.com.br/api/v6/uol/";
 const mensagens = [];
+const participantes = [];
 let nome;
 
-entrarNaSala();
+perguntarNome();
+setInterval(atualizarStatus, 4000);
+setInterval(carregarMensagens, 3000);
+
+function perguntarNome() {
+    nome = prompt("Qual é o seu nome?");
+    entrarNaSala();
+}
 
 function entrarNaSala() {
-    nome = prompt("Qual é o seu nome?");
+
     const usuario = {
         name: nome
     }
     const promessa = axios.post(URL_SERVIDOR + "participants", usuario);
     promessa.then(carregarMensagens);
     promessa.catch(tratarErros);
+}
+
+function atualizarStatus(){
+    const usuario = {
+        name: nome
+    }
+
+    const promessa = axios.post(URL_SERVIDOR + "status", usuario);
 }
 
 function carregarMensagens() {
@@ -30,10 +46,22 @@ function carregarMensagens() {
         mensagens.push(response.data);
 
         for (let i = 0; i < response.data.length; i++) {
-            conteudo.innerHTML += `<div class="message ${response.data[i].type}">
+
+            if (response.data.type === "message") {
+                conteudo.innerHTML += `<div class="message">
+                                        <p>(${response.data[i].time})  <strong>${response.data[i].from}</strong> para <strong>${response.data[i].to}</strong>:  ${response.data[i].text}</p>
+                                </div>`
+            } else if (response.data.type === "private_message") {
+                conteudo.innerHTML += `<div class="message">
+                                        <p>(${response.data[i].time})  <strong>${response.data[i].from}</strong> reservadamente para <strong>${response.data[i].to}</strong>:  ${response.data[i].text}</p>
+                                </div>`
+            } else {
+                conteudo.innerHTML += `<div class="message ${response.data[i].type}">
                                         <p>(${response.data[i].time})  <strong>${response.data[i].from}</strong>  ${response.data[i].text}</p>
                                 </div>`
+            }
         }
+        conteudo.lastChild.scrollIntoView();
     });
 
 
@@ -45,11 +73,18 @@ function enviarMensagens() {
         from: nome,
         to: "Todos",
         text: document.querySelector("input").value,
-        type: ""
+        type: "message"
     }
 
     const promessa = axios.post(URL_SERVIDOR + "messages", mensagem);
     promessa.then(carregarMensagens);
+    promessa.catch(window.location.reload);
+}
+
+function buscarParticipantes() {
+    const promessa = axios.get(URL_SERVIDOR + "participants");
+    promessa.then(function () {
+    });
 }
 
 function tratarErros(error) {
@@ -58,3 +93,6 @@ function tratarErros(error) {
         entrarNaSala();
     }
 }
+
+buscarParticipantes()
+
