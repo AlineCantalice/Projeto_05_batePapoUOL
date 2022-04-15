@@ -127,6 +127,18 @@ ion-icon {
     margin-top: 94px;
 }
 
+.caixa-menu-lateral{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 .menu-lateral{
     width: 70%;
     height: 100%;
@@ -144,9 +156,35 @@ ion-icon {
     margin: 25px 0;
 }
 
-.topo-menu-lateral p{
+.texto-menu-lateral{
     color: #000000;
     font-weight: 700;
+    font-size: 16px;
+}
+
+.usuarios{
+    margin: 18px;
+}
+
+.usuario{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.usuario > ion-icon{
+    font-size: 9px;
+    font-weight: bold;
+    color: #28BB25;
+}
+
+.nome-usuario, .nome-todos{
+    height: 36px;
+    display: flex;
+    align-items: center;
+}
+
+.nome-usuario, .nome-todos p{
     font-size: 16px;
 }
 
