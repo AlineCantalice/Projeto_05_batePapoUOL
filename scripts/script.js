@@ -3,26 +3,19 @@ const mensagens = [];
 const participantes = [];
 let nome;
 
-perguntarNome();
-setInterval(atualizarStatus, 4000);
-setInterval(carregarMensagens, 3000);
-
-function perguntarNome() {
-    nome = prompt("Qual é o seu nome?");
-    entrarNaSala();
-}
-
 function entrarNaSala() {
+
+    nome = document.querySelector(".input input").value;
 
     const usuario = {
         name: nome
     }
     const promessa = axios.post(URL_SERVIDOR + "participants", usuario);
-    promessa.then(carregarMensagens);
+    promessa.then(apagarTelaLogin);
     promessa.catch(tratarErros);
 }
 
-function atualizarStatus(){
+function atualizarStatus() {
     const usuario = {
         name: nome
     }
@@ -30,41 +23,54 @@ function atualizarStatus(){
     const promessa = axios.post(URL_SERVIDOR + "status", usuario);
 }
 
+function apagarTelaLogin() {
+    document.querySelector(".login").classList.add("desaparecer");
+
+    carregarMensagens();
+
+    setInterval(atualizarStatus, 5000);
+    setInterval(carregarMensagens, 3000);
+
+}
+
 function carregarMensagens() {
     const promessa = axios.get(URL_SERVIDOR + "messages");
-    let conteudo = document.querySelector(".conteudo");
+    promessa.then(renderizarMensagens);
+    promessa.catch(window.location.reload);
+}
 
-    let mensagem = {
-        from: "",
-        to: "",
-        text: "",
-        type: "",
-        time: ""
+function renderizarMensagens(response) {
+    mensagens.push(response.data);
+
+    let conteudo = document.querySelector(".conteudo");
+    conteudo.innerHTML = "";
+
+    for (let i = 0; i < response.data.length; i++) {
+        mensagensDiv(response.data[i], conteudo);
+    }
+    conteudo.lastChild.scrollIntoView();
+}
+
+function mensagensDiv(response, conteudo) {
+
+    if (response.type === "message") {
+        conteudo.innerHTML += `<div class="message">
+                        <p>(${response.time})  <strong>${response.from}</strong> para <strong>${response.to}</strong>:  ${response.text}</p>
+                    </div>`
+    } else if (response.type === "private_message") {
+        conteudo.innerHTML += `<div class="message ${response.type}">
+                        <p>(${response.time})  <strong>${response.from}</strong> reservadamente para <strong>${response.to}</strong>:  ${response.text}</p>
+                    </div>`
+    } else {
+        conteudo.innerHTML += `<div class="message ${response.type}">
+                        <p>(${response.time})  <strong>${response.from}</strong> ${response.text}</p>
+                    </div>`
     }
 
-    promessa.then(function (response) {
-        mensagens.push(response.data);
+}
 
-        for (let i = 0; i < response.data.length; i++) {
-
-            if (response.data.type === "message") {
-                conteudo.innerHTML += `<div class="message">
-                                        <p>(${response.data[i].time})  <strong>${response.data[i].from}</strong> para <strong>${response.data[i].to}</strong>:  ${response.data[i].text}</p>
-                                </div>`
-            } else if (response.data.type === "private_message") {
-                conteudo.innerHTML += `<div class="message">
-                                        <p>(${response.data[i].time})  <strong>${response.data[i].from}</strong> reservadamente para <strong>${response.data[i].to}</strong>:  ${response.data[i].text}</p>
-                                </div>`
-            } else {
-                conteudo.innerHTML += `<div class="message ${response.data[i].type}">
-                                        <p>(${response.data[i].time})  <strong>${response.data[i].from}</strong>  ${response.data[i].text}</p>
-                                </div>`
-            }
-        }
-        conteudo.lastChild.scrollIntoView();
-    });
-
-
+function mostrarMenuLateral(){
+    
 }
 
 function enviarMensagens() {
@@ -72,27 +78,21 @@ function enviarMensagens() {
     let mensagem = {
         from: nome,
         to: "Todos",
-        text: document.querySelector("input").value,
+        text: document.querySelector(".texto-mensagem input").value,
         type: "message"
     }
 
     const promessa = axios.post(URL_SERVIDOR + "messages", mensagem);
     promessa.then(carregarMensagens);
     promessa.catch(window.location.reload);
-}
 
-function buscarParticipantes() {
-    const promessa = axios.get(URL_SERVIDOR + "participants");
-    promessa.then(function () {
-    });
+    document.querySelector(".texto-mensagem input").value = '';
 }
 
 function tratarErros(error) {
-    if (error.promise.status === 400) {
-        alert("Já existe um usuário com esse nome!");
+    if (error.response.status === 400) {
+        document.querySelector(".aviso").innerHTML = "Já existe um usuário com esse nome!";
         entrarNaSala();
     }
 }
-
-buscarParticipantes()
 
