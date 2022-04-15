@@ -127,7 +127,7 @@ ion-icon {
     margin-top: 94px;
 }
 
-.caixa-menu-lateral{
+.caixa-menu-lateral {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -139,16 +139,17 @@ ion-icon {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-.menu-lateral{
+.menu-lateral {
     width: 70%;
     height: 100%;
     position: relative;
     z-index: 2;
     float: right;
     background-color: #FFFFFF;
+    overflow-y: scroll;
 }
 
-.topo-menu-lateral{
+.topo-menu-lateral {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,38 +157,52 @@ ion-icon {
     margin: 25px 0;
 }
 
-.texto-menu-lateral{
+.topo-menu-lateral:active{
+    display: none;
+}
+
+.texto-menu-lateral {
     color: #000000;
     font-weight: 700;
     font-size: 16px;
 }
 
-.usuarios{
+.usuarios,
+.tipo-visibilidade,
+.todos-usuarios {
     margin: 18px;
 }
 
-.usuario{
+.usuario,
+.todos,
+.visibilidade {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.usuario > ion-icon{
+.usuario>ion-icon,
+.todos>ion-icon,
+.visibilidade>ion-icon {
     font-size: 9px;
     font-weight: bold;
     color: #28BB25;
 }
 
-.nome-usuario, .nome-todos{
+.nome-usuario,
+.nome-todos,
+.nome-visibilidade {
     height: 36px;
     display: flex;
     align-items: center;
 }
 
-.nome-usuario, .nome-todos p{
+.nome-usuario,
+.nome-todos,
+.nome-visibilidade p {
     font-size: 16px;
 }
 
-.desaparecer{
+.desaparecer {
     display: none;
 }

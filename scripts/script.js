@@ -13,6 +13,8 @@ function entrarNaSala() {
     const promessa = axios.post(URL_SERVIDOR + "participants", usuario);
     promessa.then(apagarTelaLogin);
     promessa.catch(tratarErros);
+
+    nome = document.querySelector(".input input").value = "";
 }
 
 function atualizarStatus() {
@@ -20,16 +22,19 @@ function atualizarStatus() {
         name: nome
     }
 
-    const promessa = axios.post(URL_SERVIDOR + "status", usuario);
+    axios.post(URL_SERVIDOR + "status", usuario);
 }
 
 function apagarTelaLogin() {
     document.querySelector(".login").classList.add("desaparecer");
 
     carregarMensagens();
+    carregarUsuarios();
+    enviarMensagensEnter();
 
     setInterval(atualizarStatus, 5000);
     setInterval(carregarMensagens, 3000);
+    setInterval(carregarUsuarios, 10000);
 
 }
 
@@ -69,8 +74,30 @@ function mensagensDiv(response, conteudo) {
 
 }
 
-function mostrarMenuLateral(){
-    
+function carregarUsuarios() {
+    const promessa = axios.get(URL_SERVIDOR + "participants");
+    promessa.then(listarUsuarios);
+}
+
+function listarUsuarios(response) {
+
+    let usuario = document.querySelector(".usuarios");
+    usuario.innerHTML = "";
+
+    for (let i = 0; i < response.data.length; i++) {
+        usuario.innerHTML += `<div class="usuario">
+                                <div class="nome-usuario">
+                                    <ion-icon name="person-circle"></ion-icon>
+                                    <p>${response.data[i].name}</p>
+                                </div>
+                                <ion-icon class="desaparecer" name="checkmark-sharp"></ion-icon>
+                            </div>`
+    }
+
+}
+
+function mostrarMenuLateral() {
+    document.querySelector(".caixa-menu-lateral").classList.toggle("desaparecer");
 }
 
 function enviarMensagens() {
@@ -87,6 +114,17 @@ function enviarMensagens() {
     promessa.catch(window.location.reload);
 
     document.querySelector(".texto-mensagem input").value = '';
+}
+
+function enviarMensagensEnter(){
+    let input = document.querySelector(".texto-mensagem input");
+    input.addEventListener("keyup", event => {
+        if(event.keyCode === 13){
+            console.log(event);
+            let btn = document.querySelector(".submit");
+            btn.click();
+        }
+    })
 }
 
 function tratarErros(error) {

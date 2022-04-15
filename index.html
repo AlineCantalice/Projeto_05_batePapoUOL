@@ -31,46 +31,33 @@
                 <p class="texto-menu-lateral">Escolha um contato</p>
                 <p class="texto-menu-lateral">para enviar mensagem:</p>
             </div>
-            <div class="usuarios">
-                <div class="usuario">
+            <div class="todos-usuarios">
+                <div class="todos">
                     <div class="nome-todos">
                         <ion-icon name="people"></ion-icon>
                         <p>Todos</p>
                     </div>
-                    <ion-icon name="checkmark-sharp"></ion-icon>
-                </div>
-                <div class="usuario">
-                    <div class="nome-usuario">
-                        <ion-icon name="person-circle"></ion-icon>
-                        <p>João</p>
-                    </div>
-                    <ion-icon name="checkmark-sharp"></ion-icon>
-                </div>
-                <div class="usuario">
-                    <div class="nome-usuario">
-                        <ion-icon name="person-circle"></ion-icon>
-                        <p>Maria</p>
-                    </div>
-                    <ion-icon name="checkmark-sharp"></ion-icon>
+                    <ion-icon class="desaparecer" name="checkmark-sharp"></ion-icon>
                 </div>
             </div>
+            <div class="usuarios"></div>
             <div class="topo-menu-lateral">
                 <p class="texto-menu-lateral">Escolha a visibilidade:</p>
             </div>
-            <div class="usuarios">
-                <div class="usuario">
-                    <div class="nome-usuario">
+            <div class="tipo-visibilidade">
+                <div class="visibilidade">
+                    <div class="nome-visibilidade">
                         <ion-icon name="lock-open"></ion-icon>
                         <p>Público</p>
                     </div>
                     <ion-icon name="checkmark-sharp"></ion-icon>
                 </div>
-                <div class="usuario">
-                    <div class="nome-usuario">
+                <div class="visibilidade">
+                    <div class="nome-visibilidade">
                         <ion-icon name="lock-closed"></ion-icon>
                         <p>Reservadamente</p>
                     </div>
-                    <ion-icon name="checkmark-sharp"></ion-icon>
+                    <ion-icon class="desaparecer" name="checkmark-sharp"></ion-icon>
                 </div>
             </div>
         </div>
@@ -90,7 +77,7 @@
             <div class="texto-mensagem">
                 <input type="text" placeholder="Escreva aqui...">
             </div>
-            <ion-icon onclick="enviarMensagens()" name="paper-plane-outline"></ion-icon>
+            <ion-icon class="submit" onclick="enviarMensagens()" type="submit" name="paper-plane-outline"></ion-icon>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
