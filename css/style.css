@@ -31,13 +31,14 @@ ion-icon {
     font-size: 31px;
     margin-right: 22px;
     color: #000000;
+    cursor: pointer;
 }
 
 .conteudo {
     top: 80px;
     overflow-y: auto;
     width: 100%;
-    height: 1000vw;
+    height: 100%;
     padding: 100px 0;
     background-color: #F3F3F3;
 }
@@ -88,6 +89,21 @@ ion-icon {
     margin: 13px 0;
 }
 
+.texto-mensagem {
+    width: 75%;
+}
+
+.texto-mensagem input {
+    font-size: 18px;
+    color: #000000;
+}
+
+.texto-mensagem p {
+    font-size: 14px;
+    margin: 5px 25px;
+    color: #696969;
+}
+
 .login {
     position: fixed;
     z-index: 2;
@@ -116,6 +132,7 @@ ion-icon {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .input input {
@@ -127,23 +144,28 @@ ion-icon {
     margin-top: 94px;
 }
 
+.aviso {
+    margin: 10px auto;
+    font-size: 18px;
+    color: #696969;
+}
+
 .caixa-menu-lateral {
-    width: 100%;
     height: 100%;
+    width: 30%;
     position: fixed;
+    float: left;
     z-index: 2;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
 .menu-lateral {
     width: 70%;
     height: 100%;
-    position: relative;
+    position: fixed;
     z-index: 2;
+    top: 0;
+    right: 0;
     float: right;
     background-color: #FFFFFF;
     overflow-y: scroll;
@@ -155,10 +177,6 @@ ion-icon {
     align-items: center;
     flex-direction: column;
     margin: 25px 0;
-}
-
-.topo-menu-lateral:active{
-    display: none;
 }
 
 .texto-menu-lateral {
@@ -179,12 +197,13 @@ ion-icon {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .usuario>ion-icon,
 .todos>ion-icon,
 .visibilidade>ion-icon {
-    font-size: 9px;
+    font-size: 18px;
     font-weight: bold;
     color: #28BB25;
 }

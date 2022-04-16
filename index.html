@@ -22,43 +22,42 @@
             <input type="text" placeholder="Digite seu nome">
         </div>
         <div class="button" onclick="entrarNaSala()">Entrar</div>
-        <div class="aviso"></div>
+        <div class="aviso desaparecer">Já existe um usuário com esse nome!</div>
     </div>
 
-    <div class="caixa-menu-lateral desaparecer">
-        <div class="menu-lateral">
-            <div class="topo-menu-lateral">
-                <p class="texto-menu-lateral">Escolha um contato</p>
-                <p class="texto-menu-lateral">para enviar mensagem:</p>
-            </div>
-            <div class="todos-usuarios">
-                <div class="todos">
-                    <div class="nome-todos">
-                        <ion-icon name="people"></ion-icon>
-                        <p>Todos</p>
-                    </div>
-                    <ion-icon class="desaparecer" name="checkmark-sharp"></ion-icon>
+    <div onclick="sumirMenuLateral(this)" class="caixa-menu-lateral desaparecer"></div>
+    <div class="menu-lateral desaparecer">
+        <div class="topo-menu-lateral">
+            <p class="texto-menu-lateral">Escolha um contato</p>
+            <p class="texto-menu-lateral">para enviar mensagem:</p>
+        </div>
+        <div class="todos-usuarios">
+            <div class="todos selecionado" onclick="selecionarUsuario(this)">
+                <div class="nome-usuario">
+                    <ion-icon name="people"></ion-icon>
+                    <p class="nome-pessoa">Todos</p>
                 </div>
+                <ion-icon class="icone-usuario" name="checkmark-sharp"></ion-icon>
             </div>
-            <div class="usuarios"></div>
-            <div class="topo-menu-lateral">
-                <p class="texto-menu-lateral">Escolha a visibilidade:</p>
+        </div>
+        <div class="usuarios"></div>
+        <div class="topo-menu-lateral">
+            <p class="texto-menu-lateral">Escolha a visibilidade:</p>
+        </div>
+        <div class="tipo-visibilidade">
+            <div class="visibilidade visibilidade-selecionada" onclick="selecionarVisibilidade(this)">
+                <div class="nome-visibilidade">
+                    <ion-icon name="lock-open"></ion-icon>
+                    <p class="privacidade">Público</p>
+                </div>
+                <ion-icon class="icone" name="checkmark-sharp"></ion-icon>
             </div>
-            <div class="tipo-visibilidade">
-                <div class="visibilidade">
-                    <div class="nome-visibilidade">
-                        <ion-icon name="lock-open"></ion-icon>
-                        <p>Público</p>
-                    </div>
-                    <ion-icon name="checkmark-sharp"></ion-icon>
+            <div class="visibilidade" onclick="selecionarVisibilidade(this)">
+                <div class="nome-visibilidade">
+                    <ion-icon name="lock-closed"></ion-icon>
+                    <p class="privacidade">Reservadamente</p>
                 </div>
-                <div class="visibilidade">
-                    <div class="nome-visibilidade">
-                        <ion-icon name="lock-closed"></ion-icon>
-                        <p>Reservadamente</p>
-                    </div>
-                    <ion-icon class="desaparecer" name="checkmark-sharp"></ion-icon>
-                </div>
+                <ion-icon class="icone desaparecer" name="checkmark-sharp"></ion-icon>
             </div>
         </div>
     </div>
@@ -75,7 +74,8 @@
         <div class="conteudo"></div>
         <div class="footer">
             <div class="texto-mensagem">
-                <input type="text" placeholder="Escreva aqui...">
+                <input class="input" type="text" placeholder="Escreva aqui...">
+                <p>Enviando para Todos (Público)</p>
             </div>
             <ion-icon class="submit" onclick="enviarMensagens()" type="submit" name="paper-plane-outline"></ion-icon>
         </div>
