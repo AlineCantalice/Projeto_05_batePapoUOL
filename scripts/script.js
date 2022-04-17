@@ -30,7 +30,11 @@ function atualizarStatus() {
 }
 
 function apagarTelaLogin() {
-    document.querySelector(".login").classList.add("desaparecer");
+    document.querySelector(".input input").classList.add("desaparecer");
+    document.querySelector(".button").classList.add("desaparecer");
+    document.querySelector(".aviso").classList.add("desaparecer");
+    document.querySelector(".loading").classList.remove("desaparecer");
+    setTimeout(esperaDoisSegundos, 2000);
 
     carregarMensagens();
     carregarUsuarios();
@@ -40,6 +44,10 @@ function apagarTelaLogin() {
     setInterval(carregarMensagens, 3000);
     setInterval(carregarUsuarios, 10000);
 
+}
+
+function esperaDoisSegundos(){
+    document.querySelector(".login").classList.add("desaparecer");
 }
 
 function carregarMensagens() {

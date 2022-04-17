@@ -27,6 +27,25 @@ strong {
     margin-left: 22px;
 }
 
+.loading{
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading img {
+    height: 100px;
+    width: 100px;
+}
+
+.loading p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 8px;
+}
+
 ion-icon {
     font-size: 31px;
     margin-right: 22px;
