@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -13,11 +13,13 @@
 </head>
 
 <body>
-
+    <!-- INICIO TELA LOGIN -->
     <div class="login">
+        <!-- INICIO LOGO -->
         <div class="logo-login">
             <img src="images/logo 1.png" alt="">
         </div>
+        <!-- INICIO INPUT -->
         <div class="input">
             <input type="text" placeholder="Digite seu nome">
             <div class="loading desaparecer">
@@ -25,16 +27,22 @@
                 <p>Entrando...</p>
             </div>
         </div>
+        <!-- INICIO BOTÃO E AVISO -->
         <div class="button" onclick="entrarNaSala()">Entrar</div>
         <div class="aviso desaparecer">Já existe um usuário com esse nome!</div>
     </div>
+    <!-- FIM TELA LOGIN -->
 
+    <!-- INICIO TELA MENU LATERAL - BARRA ESCURA -->
     <div onclick="sumirMenuLateral(this)" class="caixa-menu-lateral desaparecer"></div>
+    <!-- INICIO TELA MENU LATERAL -->
     <div class="menu-lateral desaparecer">
+        <!-- INICIO TOPO MENU LATERAL -->
         <div class="topo-menu-lateral">
             <p class="texto-menu-lateral">Escolha um contato</p>
             <p class="texto-menu-lateral">para enviar mensagem:</p>
         </div>
+        <!-- INICIO TODOS USUARIOS -->
         <div class="todos-usuarios">
             <div class="todos selecionado" onclick="selecionarUsuario(this)">
                 <div class="nome-usuario">
@@ -44,10 +52,14 @@
                 <ion-icon class="icone-usuario" name="checkmark-sharp"></ion-icon>
             </div>
         </div>
+        <!-- FIM TODOS USUARIOS -->
+        <!-- INICIO TODOS USUARIOS - CARREGADA DINAMICAMENTE -->
         <div class="usuarios"></div>
+        <!-- TEXTO VISIBILIDADE -->
         <div class="topo-menu-lateral">
             <p class="texto-menu-lateral">Escolha a visibilidade:</p>
         </div>
+        <!-- INICIO VISIBILIDADE -->
         <div class="tipo-visibilidade">
             <div class="visibilidade visibilidade-selecionada" onclick="selecionarVisibilidade(this)">
                 <div class="nome-visibilidade">
@@ -64,9 +76,13 @@
                 <ion-icon class="icone desaparecer" name="checkmark-sharp"></ion-icon>
             </div>
         </div>
+        <!-- FIM VISIBILIDADE -->
     </div>
+    <!-- FIM MENU LATERAL -->
 
+    <!-- INICIO TELA PRINCIPAL -->
     <div class="tela-inicial">
+        <!-- INICIO TOPO -->
         <div class="topo">
             <div class="logo">
                 <img src="images/logo 1.png" alt="">
@@ -75,7 +91,9 @@
                 <ion-icon onclick="mostrarMenuLateral()" name="people"></ion-icon>
             </div>
         </div>
+        <!-- INICIO CONTEUDO - CARREGADO DINAMICAMENTE -->
         <div class="conteudo"></div>
+        <!-- INICIO FOOTER -->
         <div class="footer">
             <div class="texto-mensagem">
                 <input class="input" type="text" placeholder="Escreva aqui...">
@@ -84,6 +102,7 @@
             <ion-icon class="submit" onclick="enviarMensagens()" type="submit" name="paper-plane-outline"></ion-icon>
         </div>
     </div>
+    <!-- FIM TELA PRINCIPAL -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="scripts/script.js"></script>
