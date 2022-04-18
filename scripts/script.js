@@ -102,23 +102,21 @@ function renderizarMensagens(response) {
 */
 function mensagensDiv(response, conteudo) {
 
-    // verifica se as mensagens são do usuario ou para o usuario, se não, não insere a mensagem na div
-    if (response.from === nome || response.to === "" || response.to === "Todos" || response.to === nome) {
-
-        // verifica se a mensagem é pública, reservada ou status e as insere de acordo com o tipo
-        if (response.type === "message") {
-            conteudo.innerHTML += `<div class="message">
+    // verifica se a mensagem é pública, reservada ou status e as insere de acordo com o tipo
+    if (response.type === "message") {
+        conteudo.innerHTML += `<div class="message">
                         <p>(${response.time})  <strong>${response.from}</strong> para <strong>${response.to}</strong>:  ${response.text}</p>
                     </div>`
-        } else if (response.type === "private_message") {
-            conteudo.innerHTML += `<div class="message ${response.type}">
+    }
+    if (response.type === "private_message" && (response.from === nome || response.to === "Todos" || response.to === nome)) {
+        conteudo.innerHTML += `<div class="message ${response.type}">
                         <p>(${response.time})  <strong>${response.from}</strong> reservadamente para <strong>${response.to}</strong>:  ${response.text}</p>
                     </div>`
-        } else {
-            conteudo.innerHTML += `<div class="message ${response.type}">
+    } 
+    if (response.type === "status") {
+        conteudo.innerHTML += `<div class="message ${response.type}">
                         <p>(${response.time})  <strong>${response.from}</strong> ${response.text}</p>
                     </div>`
-        }
     }
 
 }
@@ -174,7 +172,7 @@ function listarUsuarios(response) {
     }
 
     // verifica se o usuario selecionado esta logado, se não retorna para todos
-    if(temSelecionado === false){
+    if (temSelecionado === false) {
         const todos = document.querySelector(".todos");
         todos.classList.add("selecionado");
         todos.querySelector(".icone-usuario").classList.remove("desaparecer");
