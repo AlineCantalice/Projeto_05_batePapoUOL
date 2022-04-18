@@ -16,6 +16,10 @@ ion-icon {
     cursor: pointer;
 }
 
+input {
+    outline: 0;
+}
+
 /* TELA DE LOGIN */
 .login {
     position: fixed;

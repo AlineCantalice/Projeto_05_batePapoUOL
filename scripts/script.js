@@ -142,6 +142,7 @@ function listarUsuarios(response) {
     usuario.innerHTML = "";
     // coleta o nome do usuario previamente selecionado
     const selecionado = usuarioSelecionado.querySelector(".nome-pessoa").innerHTML;
+    let temSelecionado = false;
 
     for (let i = 0; i < response.data.length; i++) {
         // verifica se o nome que vem na lista de usuario é diferente do usuario logando,
@@ -158,6 +159,7 @@ function listarUsuarios(response) {
                                 </div>
                                 <ion-icon class="icone-usuario" name="checkmark-sharp"></ion-icon>
                             </div>`
+                temSelecionado = true;
             } else {
                 // caso não, os outros usuarios serão renderizados normalmente
                 usuario.innerHTML += `<div class="usuario" onclick="selecionarUsuario(this)">
@@ -169,6 +171,15 @@ function listarUsuarios(response) {
                             </div>`
             }
         }
+    }
+
+    // verifica se o usuario selecionado esta logado, se não retorna para todos
+    if(temSelecionado === false){
+        const todos = document.querySelector(".todos");
+        todos.classList.add("selecionado");
+        todos.querySelector(".icone-usuario").classList.remove("desaparecer");
+        enviarPara = todos.querySelector(".nome-pessoa").innerHTML;
+        modificarMensagem();
     }
 
 }
